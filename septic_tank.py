@@ -3,7 +3,7 @@ from collections.abc import Iterable
 
 import string
 import itertools as itr
-import more_itertools as mitr
+# import more_itertools as mitr
 
 alpha = string.ascii_lowercase
 
