@@ -3,7 +3,7 @@ from collections.abc import Iterable
 
 import string
 import itertools as itr
-# import more_itertools as mitr
+import more_itertools as mitr
 
 alpha = string.ascii_lowercase
 
@@ -54,4 +54,4 @@ def inclusive(a, b):
     return range(int(a), int(b+1))
 
 def tuple_augment(into, at, f):
-    return *into[:at], f(into[at]), *into[at+1:]
+    return (*into[:at], f(into[at]), *into[at+1:])
