@@ -9,7 +9,7 @@ import re
 def main():
     number = re.compile(r'[0-9]+')
     lines = slorp()
-    symbols = set()
+    gears = set()
     numbers = []
     for y, l in enumerate(lines):
         n, ns = '', None
@@ -21,19 +21,30 @@ def main():
                 numbers.append((n, ns, x, y))
                 n = ''
                 ns = None
-            if c not in '.0123456789':
-                symbols.add(complex(x, y))
+            if c == '*':
+                gears.add(complex(x, y))
         if n:
             numbers.append((n, ns, len(l), y))
     
+    gearss = defaultdict(list)
+
     s = 0
     for n, ns, ne, y in numbers:
-        add = False
+        adjs = set()
         for x in range(ns, ne):
+            z = complex(x,y)
             for o in moore:
-                if complex(x, y) + o in symbols:
-                    add = True
-        s += add * int(n)
+                if z + o in gears:
+                    adjs.add(z + o)
+     #   print(adjs)
+        for a in adjs:
+            gearss[a].append(int(n))
+    #print(gearss, gears, numbers)
+    for a, p in gearss.items():
+        if len(p) == 2:
+            x, y = p
+            s += x * y
+
     print(s)
 
 if __name__ == '__main__':

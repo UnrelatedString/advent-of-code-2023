@@ -4,6 +4,7 @@ from collections.abc import Iterable
 import string
 import itertools as itr
 import more_itertools as mitr
+from collections import defaultdict
 
 alpha = string.ascii_lowercase
 
