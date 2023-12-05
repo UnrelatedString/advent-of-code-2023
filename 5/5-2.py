@@ -50,7 +50,8 @@ def main():
             s = [t for l in zip(*snew) for t in l]
             new += [[] for _ in range(len(new), len(s))]
             # print(new)
-        s = [(a, b) for l, o in zip(new, s) for a, b in (l + [o]) if a < b]
+        s += [t for l in new for t in l]
+        s = [(a, b) for a, b in s if a < b]
 
         # print(s)
 
