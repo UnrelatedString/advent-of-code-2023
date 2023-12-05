@@ -17,26 +17,42 @@ def main():
         new = [[] for _ in s]
         for m in g[1:]:
             d, f, l = il(m)
+            snew = [[l] for l in s]
             for i, (a, b) in enumerate(s):
                 if f <= a < b <= f + l:
                     new[i] += [
                         (a - f + d, b - f + d),
                     ]
-                    s[i] = (0, 0)
+                    snew[i] = [(a, a)]
                 elif f <= a < f + l:
                     new[i] += [
                         (a - f + d, d + l),
+                        # (f + l, b),
                     ]
-                    s[i] = (f + l, b)
-                elif f <= b <= f + l:
+                    snew[i] = [(f + l, b)]
+                elif f < b <= f + l:
                     new[i] += [
                         (d, b - f + d),
+                        # (a, f),
                     ]
-                    s[i] = (a, f)
-            #print(new)
+                    snew[i] = [(a, f)]
+                elif a <= f < f + l <= b:
+                    new[i] += [
+                        #(a, f),
+                        (d, d + l),
+                        #(d + l, b)
+                    ]
+                    snew[i] = [
+                        (a, f),
+                        #(d, d + l),
+                        (d + l, b)
+                    ]
+            s = [t for l in zip(*snew) for t in l]
+            new += [[] for _ in range(len(new), len(s))]
+            # print(new)
         s = [(a, b) for l, o in zip(new, s) for a, b in (l + [o]) if a < b]
 
-        #print(s)
+        # print(s)
 
     print(min(min(s)))
         
