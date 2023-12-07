@@ -9,8 +9,9 @@ def main():
     r = 'AKQJT98765432'.index
 
     hs = []
+    bets = {}
 
-    for line in slorp():
+    for i, line in enumerate(slorp()):
         h, b = line.split()
         b = int(b)
         
@@ -43,14 +44,16 @@ def main():
             assert len(set(h)) == 5
             p = 6
         
-        hs.append([-p, *(-r(c) for c in h), b])
+        hs.append([-p, *(-r(c) for c in h), h, i])
+        bets[i] = b
     
     # hs = hs[::-1]
-    hs = sorted(hs, key = lambda l: l[:-1])
+    hs = sorted(hs, key = lambda l: l[:-2])
     # print(*hs)
     s = 0
     for i, x in enumerate(hs[::-1]):
-        s += (i + 1) * x[-1]
+        print(i, x[-2])
+        s += (len(hs) - i) * bets[x[-1]]
     print(s)
 
 if __name__ == '__main__':
