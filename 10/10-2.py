@@ -49,6 +49,8 @@ def main():
             dir = c - p
             left.add(c + (dir * 1j))
             right.add(c - (dir * 1j))
+            left.add(p + (dir * 1j))
+            right.add(p - (dir * 1j))
         dir = c - p
         left.add(c + (dir * 1j))
         right.add(c - (dir * 1j))
@@ -70,11 +72,15 @@ def main():
                 z = c + o
                 if z not in visited and z not in loop and -1 <= z.real <= w and -1 <= z.imag <= h:
                     unvisited.add(z)
-            if -1-1j in visited:
-                return 0
+        if -1-1j in visited:
+            return 0
         return len(visited)
     
     # print(-~-~w * -~-~h - len(visited) - len(loop))
+
+    # print({complex(x, y) for x in range(w) for y in range(h)} - flood(left) - flood(right) - loop)
+
+    assert not (left & right) - loop
 
     print(max(flood(left - loop), flood(right - loop)))
 
