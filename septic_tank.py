@@ -5,6 +5,7 @@ import string
 import itertools as itr
 import more_itertools as mitr
 from collections import defaultdict
+from functools import lru_cache
 
 alpha = string.ascii_lowercase
 
