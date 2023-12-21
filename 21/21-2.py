@@ -41,13 +41,13 @@ def main():
 
     s = 0
     r, rem = divmod(target , w)
-    oddcs = sum(2*n - 1 for n in range(0, r, 2))
-    evencs = r ** 2 - oddcs
-    s += oddcs * len(rbl[1] & plot) + evencs * len(rbl[0] & plot)
+    oddcs = sum(n * 4 - 1 for n in range(0, r, 2))
+    evencs = sum(n * 4 - 1 for n in range(1, r, 2))
+    s += oddcs * len(rbl[0] & plot) + evencs * len(rbl[1] & plot)
     #s += len(rbl) * -~(target // w) ** 2
     e = 0
     for z in dists:
-        e += ~(dists[z] ^ rem) & 1 and dists[z] <= rem
+        e += (dists[z] ^ rem) & 1 and dists[z] <= rem
     s += e * -~r * 4
     print(s)
     
