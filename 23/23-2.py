@@ -34,6 +34,8 @@ def main():
 
     m = 0
 
+    neighbors = defaultdict()
+
     # print(len(crossroads))
 
     heads = deque()
