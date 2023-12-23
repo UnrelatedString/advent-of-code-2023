@@ -4,7 +4,7 @@ from collections.abc import Iterable
 import string
 import itertools as itr
 import more_itertools as mitr
-from collections import defaultdict
+from collections import defaultdict, deque
 from functools import lru_cache
 
 alpha = string.ascii_lowercase

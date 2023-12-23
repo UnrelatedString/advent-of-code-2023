@@ -71,38 +71,40 @@ def main():
     # print(*(cdlcdsalkcjv(aaaaa) for aaaaa in 'kb kx jl cz fx bf lr bl bs pp qv xm'.split()))
     
 
-    pattern = deque()
-    pattern.append(('broadcaster', 0, 'button'))
-    n = 0
-    while pattern:
-        q, pattern = pattern, deque() # q = pattern.copy()
-        n += 1
-        while q:
-            recr, recv, frm = q.popleft()
-            # print(f'{frm} -{"hliogwh"[not recv::2]}-> {recr}')
-            if recr == 'rx' and not recv:
-                print(1 << n)
-                return
-            t, dests = d[recr]
-            if t == 'b':
-                outv = recv
-            elif t == '%':
-                if recv:
-                    continue
-                states[recr] ^= 1
-                outv = states[recr]
-                if outv:
-                    pattern.append((recr, recv, frm))
-            elif t == '&':
-                states[recr][frm] = recv
-                outv = not all(states[recr][par] for par in parents[recr])
-            for dt in dests[::1]:
-                q.append((dt, outv, recr))
-                # if t == '%' and d[dt][0] == '%' and outv:
-                #     pattern.append((dt, 0, recr))
-        print(n, pattern, parents['rx'])
+    # pattern = deque()
+    # pattern.append(('broadcaster', 0, 'button'))
+    # n = 0
+    # while pattern:
+    #     q, pattern = pattern, deque() # q = pattern.copy()
+    #     n += 1
+    #     while q:
+    #         recr, recv, frm = q.popleft()
+    #         # print(f'{frm} -{"hliogwh"[not recv::2]}-> {recr}')
+    #         if recr == 'rx' and not recv:
+    #             print(1 << n)
+    #             return
+    #         t, dests = d[recr]
+    #         if t == 'b':
+    #             outv = recv
+    #         elif t == '%':
+    #             if recv:
+    #                 continue
+    #             states[recr] ^= 1
+    #             outv = states[recr]
+    #             if outv:
+    #                 pattern.append((recr, recv, frm))
+    #         elif t == '&':
+    #             states[recr][frm] = recv
+    #             outv = not all(states[recr][par] for par in parents[recr])
+    #         for dt in dests[::1]:
+    #             q.append((dt, outv, recr))
+    #             # if t == '%' and d[dt][0] == '%' and outv:
+    #             #     pattern.append((dt, 0, recr))
+    #     print(n, pattern, parents['rx'])
     
-    assert False
+    # assert False
+                
+    
     
 
 if __name__ == '__main__':
