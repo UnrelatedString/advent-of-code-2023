@@ -64,7 +64,8 @@ def main():
     (ax, ay, az), (adx, ady, adz) = a
     (bx, by, bz), (bdx, bdy, bdz) = b
     st = 1
-    while True:        
+    while True:
+        # print(st)  
         for ta in range(st):
             tb = st - ta
             if ta == tb:
